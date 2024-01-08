@@ -7,23 +7,23 @@
 <main class="bg-light py-0">
     <section id="show">
         <div class="blue-stripe">
-            <img src="{{$comic['thumb']}}" alt="{{$comic['title']}}" class="portrait">
+            <img src="{{$comic->thumb}}" alt="{{$comic->title}}" class="portrait">
         </div>
         <div class="container">
             <div class="row gy-4">
                 <div class="col-12 d-flex">
                     <div class="px-4">
-                        <h2 class="py-4">{{$comic['title']}}</h2>
+                        <h2 class="py-4">{{$comic->title}}</h2>
                         <div id="button">
                             <div class="w-75 d-flex justify-content-between align-items-center">
-                                <div class="px-5">U.S. Price <span>{{$comic['price']}}</span></div>
+                                <div class="px-5">U.S. Price <span>{{$comic->price}}</span></div>
                                 <div class="px-5">AVAILABLE</div>
                             </div>
                             <div class="w-25">
                                 <p class="text-center">Check Availability</p>
                             </div>
                         </div>
-                        <p class="desc py-4">{{ $comic['description'] }}</p>
+                        <p class="desc py-4">{{ $comic->description}}</p>
                     </div>
                     <div class="d-flex flex-column py-4">
                         <h6 class="text-end">ADVERTISMENT</h6>

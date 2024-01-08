@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ComicController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,25 +22,27 @@ Route::get('/about', function () {
     return view('about');
 })->name('about');
 
-Route::get('/comics', function () {
-    return view('comics.index');
-})->name('comics');
+// Route::get('/comics', function () {
+//     return view('comics.index');
+// })->name('comics');
 
 Route::get('/404', function () {
     return view('pageNotFound');
 })->name('404');
 
-Route::get('/comics/{id}', function ($id) {
-    $comics = config('comics.key');
-    // if ($id >= 0 && $id < count($products)) {
-    $comic = $comics[$id];
+// Route::get('/comics/{id}', function ($id) {
+//     $comics = config('comics.key');
+//     // if ($id >= 0 && $id < count($products)) {
+//     $comic = $comics[$id];
 
-    return view('comics.show', compact('comic'));
-    // } else {
-    //     abort(404);
-    // }
-})->name('comics.show');
+//     return view('comics.show', compact('comic'));
+//     // } else {
+//     //     abort(404);
+//     // }
+// })->name('comics.show');
 
 Route::fallback(function () {
     return redirect()->route('404');
 });
+
+Route::resource('comics', ComicController::class);
