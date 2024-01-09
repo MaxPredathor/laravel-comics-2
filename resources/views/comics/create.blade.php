@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Single Product')
+@section('title', 'Create Product')
 
 @section('content')
     @include('partials.jumbo')
