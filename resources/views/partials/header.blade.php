@@ -3,7 +3,7 @@
         <div class="d-flex justify-content-between align-items-center">
             <div class="py-3">
                 <a href="{{ route('home') }}">
-                    <img src="{{Vite::asset('resources/img/dc-logo.png')}}" alt="DC logo">
+                    <img src="{{ Vite::asset('resources/img/dc-logo.png') }}" alt="DC logo">
                 </a>
             </div>
             <div class="my-div">
@@ -14,7 +14,9 @@
                     <li class="{{ Route::currentRouteName() == 'comics' ? 'selected-page' : '' }}">
                         <a href="{{ route('comics.index') }}">COMICS</a>
                     </li>
-                    <li>MOVIES</li>
+                    <li class="{{ Route::currentRouteName() == 'create' ? 'selected-page' : '' }}">
+                        <a href="{{ route('comics.create') }}">CREATE</a>
+                    </li>
                     <li>TV</li>
                     <li>GAMES</li>
                     <li>COLLECTIBLES</li>
