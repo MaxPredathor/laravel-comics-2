@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 use App\Models\Comic;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreComicRequest;
@@ -15,9 +16,14 @@ class ComicController extends Controller
      *
      *
      */
-    public function index()
+    public function index(Request $request): View
     {
-        $comics = Comic::all();
+        if(!empty($request->query('search'))){
+            $search = $request->query('search');
+            $comic = Comic::where('title', 'like', $search . '%')->get();
+        }else {
+            $comics = Comic::all();
+        }
         return view('comics.index', compact('comics'));
     }
 
