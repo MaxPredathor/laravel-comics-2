@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comic;
+use Illuminate\Support\Facades\Validator;
 
 class ComicController extends Controller
 {
@@ -89,5 +90,34 @@ class ComicController extends Controller
     {
         $comic->delete();
         return to_route('comics.index')->with('deleted', 'Hai eliminato ' . $comic->title);
+    }
+
+    private function validation($data){
+        $validation = Validator::Make($data, [
+            'title'=>'required|min:5|max:255|unique:comics',
+            'description'=>'required|max:1000',
+            'price'=>'required|numeric',
+            'series'=>'required|max:50',
+            'sale_date'=>'required|date_format:Y-m-d',
+            'type'=>'required|max:50',
+        ],
+        [
+            'title.unique' => 'Il titolo deve essere univoco',
+            'title.min' => 'Il titolo deve avere almeno :min caratteri',
+            'title.max' => 'Il titolo deve avere massimo :max caratteri',
+            'title.required' => 'Il titolo è obbligatorio',
+            'description.required' => 'La descrizione è obbligatoria',
+            'description.max' => 'La descrizione deve avere massimo :max caratteri',
+            'price.required' => 'Il prezzo è obbligatorio',
+            'price.numeric' => 'Il prezzo deve essere un numero',
+            'series.required' => 'La serie è obbligatoria',
+            'series.max' => 'La serie deve avere massimo :max caratteri',
+            'sale_date.required' => 'La data di vendita è obbligatoria',
+            'type.max' => 'Il tipo deve avere massimo :max caratteri',
+            'type.required' => 'Il tipo è obbligatorio',
+            'sale_date.date_format' => 'Data non valida',
+
+        ])->validate();
+        return $validation;
     }
 }
