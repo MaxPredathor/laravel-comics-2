@@ -20,7 +20,7 @@ class ComicController extends Controller
     {
         if(!empty($request->query('search'))){
             $search = $request->query('search');
-            $comic = Comic::where('title', 'like', $search . '%')->get();
+            $comics = Comic::where('type', $search)->get();
         }else {
             $comics = Comic::all();
         }

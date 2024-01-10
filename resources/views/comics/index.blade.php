@@ -6,6 +6,14 @@
     <main>
         <section class="container">
             <h1>Comics</h1>
+            <form class="py-3" action="{{ route('comics.index') }}" method="GET">
+                <select name="search" id="search">
+                    <option selected value="">All</option>
+                    <option value="comic book">Comic</option>
+                    <option value="graphic novel">Graphic Novel</option>
+                </select>
+                <button class="btn btn-success position-static" type="submit">Cerca</button>
+            </form>
             @if (session()->has('deleted'))
                 <div class="alert alert-success">
                     {{ session('deleted') }}
